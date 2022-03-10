@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user-mangement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        .box-shadow{
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        }
+        tr{
+            white-space: nowrap;
+        }
+        td{
+            padding-left: 1.30rem;
+            padding-right: 1rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;  
+            padding-top: 1rem;
+            padding-right: 1rem;
+        }
+        tbody{
+            background-color: white;
+        }
+    </style>
+    <script>
+            // var user = [
+            //     {
+            //         id,
+            //         name,
+            //         email,
+            //         password,
+            //         role
+            //     }
+            // ]
+            
+            //Function To Display Popup
+            function div_show() {
+                var table1 = document.getElementById("myTableData");
+
+                document.getElementById('pop-up').style.display = "block";
+                }
+            //Function to Hide Popup
+            function div_hide(){
+                document.getElementById('pop-up').style.display = "none";
+                }
+             //Function To Display edit-Popup
+             function div_show1() {
+                document.getElementById('edit-popup').style.display = "block";
+                }
+            //Function to Hide edit-Popup
+            function div_hide1(){
+                document.getElementById('edit-popup').style.display = "none";
+                } 
+                
+                function add_th(){
+
+                    
+                    var table = document.getElementById("myTableData");
+
+                    var rowCount = table.rows.length;
+                    var row = table.insertRow(rowCount);
+
+                    var myid = rowCount+0;
+                    var myname = document.getElementById("name");
+                    var myemail = document.getElementById("email");
+                    var mypassword = document.getElementById("password");
+                    var myrole = document.getElementById("role");
+
+                    row.insertCell(0).innerHTML= myid;
+                    row.insertCell(1).innerHTML= myname.value;
+                    row.insertCell(2).innerHTML= myemail.value;
+                    row.insertCell(3).innerHTML= mypassword.value;
+                    row.insertCell(4).innerHTML= myrole.value;
+                    row.insertCell(5).innerHTML=  '<input  type="button" value = "Edit" onClick="Javacsript:div_show1()" class="px-4 py-1 text-sm text-white bg-amber-400 rounded">';
+                    row.insertCell(6).innerHTML= '<input type="button" value = "Delete" onClick="Javacsript:deleteRow(this)"class="px-4 py-1 text-sm text-white bg-red-400 rounded">';
+
+                    }
+                //submit
+            
+        // // delect-row 
+        function deleteRow(r) 
+        {
+             var i = r.parentNode.parentNode.rowIndex;
+             var table = document.getElementById("myTableData");
+             var c = confirm("do you want to delete this row ?");
+            if(c === true){
+                document.getElementById('main-table').deleteRow(i);
+                
+            }
+         }
+
+         function updaterow(r) 
+        {
+             var i = r.parentNode.parentNode.rowIndex;
+             var table = document.getElementById("myTableData");
+
+             
+             console.log(r.parentElement.parentElement);
+             
+            
+         
+         }
+         
+
+
+    </script>
+   
+</head>
+<body>
+    <div class="flex flex-col">
+        <div class="basis-1/2 bg-slate-700 py-4">
+            <div class="flex flex-row ">
+                <div class="basis-1/2 border-solid">
+                    <div class="pl-7 ">
+                        <input type="text" class="" placeholder="Search For...">
+                        <button class="px-4 text-white bg-blue-600 border-l">
+                            Search
+                        </button>
+                    </div>
+                </div>
+                <div class="basis-1/2 flex justify-end items-end">
+                    <div class="">
+                        <p class="far fa-bell text-xl pr-4"></p>
+                        <p class="far fa-envelope text-xl border-r-2 border-white-800 pl-3 pr-6">
+                        </p>
+                        <span> admin@gmail.com
+                            <p class="fas fa-user text-xl pr-3"></p>
+                        </span>
+                    </div>
+                   
+                </div>
+              </div>
+              
+        </div>
+        <div class="basis-1/2 py-6">
+            <div class="pl-7">
+                <p class="">Admin Panel 
+                    <span class="pl-3">
+                        <button class="px-4 py-1 text-white bg-blue-600 border-l hover:bg-gray-700" onclick="div_show()">
+                            Create new account
+                        </button>
+                    </span>    
+                </p>
+            </div>
+        </div>
+        <!-- form -->
+        <div class="basis-1/2">
+            <div class="container flex justify-center mx-auto">
+                <div class="flex flex-col">
+                    <div class="w-full">
+                        <div class="border border-gray-500 box-shadow w-full">
+                            <form action="#" method="post">
+                            <table  id="main-table">
+                                <div class="text-blue-500 pl-6 py-3">
+                                    <p>User profile</p>
+                                </div>
+                                <!-- head  -->
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-2 text-xs text-gray-500" >
+                                            ID
+                                        </th>
+                                        <th class="px-6 py-2 text-xs text-gray-500" >
+                                            Name
+                                        </th>
+                                        <th class="px-6 py-2 text-xs text-gray-500" >
+                                            Email
+                                        </th>
+                                        <th class="px-6 py-2 text-xs text-gray-500" >
+                                            password
+                                        </th>
+                                        <th class="px-6 py-2 text-xs text-gray-500" >
+                                            Role
+                                        </th>
+                                        <th class="px-6 py-2 text-xs text-gray-500">
+                                            Edit
+                                        </th>
+                                        <th class="px-6 py-2 text-xs text-gray-500">
+                                            Delete
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white" id="myTableData">
+                                    <tr class="whitespace-nowrap">
+                                        
+                                        
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- popup sing up -->
+
+        <div class="py-20 h-screen bg-gray-300 px-2 w-screen fixed  hidden"  id="pop-up" style="background-color:rgba(0, 0, 0, 0.5)   ">
+            <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-md">
+                <div class="">
+                    <div class="text-2xl flex justify-end items-end pr-3">
+                        <button onclick="div_hide()">
+                            <p class="fas fa-times"></p>
+                        </button>
+                    </div>
+                    
+                    <div class="w-full p-3 px-6 py-10">
+                        <div class="text-center"> <span class="text-xl text-gray-700">create an account</span> </div>
+                        <div class="mt-3 relative"> <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400 ">First name
+                        </span> <input type="text" class="h-12 px-2 w-full border-2 rounded " id="name" placeholder=""> </div>
+                        <div class="mt-4 relative"> <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400 ">Email
+                        </span> <input type="text" class="h-12 px-2 w-full border-2 rounded " id="email"> </div>
+                        <div class="mt-4 relative flex flex-row"> 
+                            <div class="basis-1/2" >
+                                <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400 ">Password
+                                </span> <input type="text" class="h-12 px-2 w-full border-2 rounded "  id="password" >
+                            </div>
+                            <div class="basis-1/2">
+                                <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400  ">Retype
+                                </span> <input type="text" class="h-12 px-2 w-full border-2 rounded " > 
+                            </div> 
+                         </div>
+                        <div class="mt-4 relative"> <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400 ">User Type 
+                        </span> 
+                        <select class="h-12 px-2 w-full border-2 rounded " id="role">
+                            <option value="client">client</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Legend">Legend</option>
+                          </select>
+                       </div>
+                        <div class="mt-4"> <button type="submit" class="h-12 w-full bg-blue-700 text-white rounded hover:bg-red-700" onclick="add_th()" >Resister Account
+                             <i class="fa fa-long-arrow-right"></i></button> </div>
+                    </div>
+                </div>
+                <div class="pt-2 border-t-2 border-gray-200 flex justify-center items-center  ">
+                </div>
+                <div class="text-blue-700">
+                    <div class="flex justify-center items-center">
+                        <p>Forget Password?</p>
+                    </div>
+                    <div class="flex justify-center items-center pt-2 pb-6"><p>Already have account?
+                        <span>Login?</span>
+                    </p></div>
+                </div>             
+            </div>
+        </div>
+        <!-- popup-edit -->
+        <div class="py-20 h-screen bg-gray-300 px-2 hidden w-screen fixed "  id="edit-popup" style="background-color:rgba(0, 0, 0, 0.5)   ">
+            <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-md">
+                <div class="">
+                    <div class="text-2xl flex justify-end items-end pr-3">
+                        <button onclick="div_hide1()">
+                            <p class="fas fa-times"></p>
+                        </button>
+                    </div>
+                    <div class="w-full p-3 px-6 py-10">
+                        <div class="text-center"> <span class="text-xl text-gray-700">Edit an account</span> </div>
+                        <div class="mt-3 relative"> <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400 " id="myname">First name
+                        </span> <input type="text" class="h-12 px-2 w-full border-2 rounded " > </div>
+                        <div class="mt-4 relative"> <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400 ">Email
+                        </span> <input type="text" class="h-12 px-2 w-full border-2 rounded " > </div>
+                        <div class="mt-4 relative"> <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400 ">password
+                        </span> <input type="text" class="h-12 px-2 w-full border-2 rounded " > </div>
+                        <div class="mt-4 relative"> <span class="absolute p-1 bottom-8 ml-2 bg-white text-gray-400 ">User Type 
+                        </span> 
+                        <select class="h-12 px-2 w-full border-2 rounded " id="role">
+                            <option value="client">client</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Legend">Legend</option>
+                          </select>
+                       </div>
+
+                        <div class="mt-4"> <button type="submit" class="h-12 w-full bg-blue-700 text-white rounded hover:bg-red-700" 
+                            id="update" onclick="updaterow(this)">update
+                             <i class="fa fa-long-arrow-right" ></i></button> </div>
+                    </div>
+                </div>
+                <div class="pt-2 border-t-2 border-gray-200 flex justify-center items-center  ">
+                </div>
+                <div class="text-blue-700">
+                    <div class="flex justify-center items-center">
+                        <p>Forget Password?</p>
+                    </div>
+                    <div class="flex justify-center items-center pt-2 pb-6"><p>Already have account?
+                        <span>Login?</span>
+                    </p></div>
+                </div>             
+            </div>
+        </div>
+
+        <!-- Admin -->
+        <div class="basis-1/2">
+            <div class="flex justify-center items-center py-3">
+                <p >Made By Admin</p>
+            </div>
+        </div>
+      </div>
+</body>
+</html>
