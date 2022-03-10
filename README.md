@@ -1,9 +1,9 @@
 # hello-world01
 - 👋 Hi, I’m @Vanthorng02
 
-- 👀 I’m interested in ...
+- 👀 I’m interested in Film Cammera.
 
-- 🌱 I’m currently learning ...
+- 🌱 I’m currently learning Git and Github.
 
 - 💞️ I’m looking to collaborate on ...
 
